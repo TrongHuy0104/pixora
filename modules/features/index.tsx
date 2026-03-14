@@ -1,7 +1,6 @@
 "use client";
 
 import { Crop, Expand, Scissors, Type, Zap } from "lucide-react";
-import React from "react";
 import { motion } from "framer-motion";
 
 const features = [
