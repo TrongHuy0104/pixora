@@ -11,6 +11,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@imagekit/next": "^2.1.5",
     "@prisma/client": "^6.19.2",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
