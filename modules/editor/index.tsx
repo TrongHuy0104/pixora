@@ -321,8 +321,8 @@ const Editor = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-primary bg-clip-textĂ text-transparent">
-              Magic
+            <span className="bg-gradient-primary bg-clip-text! text-transparent">
+            Magic
             </span>
             <span className="text-foreground"> Studio</span>
           </h2>

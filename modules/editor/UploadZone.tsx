@@ -8,6 +8,7 @@ import {
   ImageKitUploadNetworkError,
   upload,
 } from "@imagekit/next";
+import PaymentModal from "@/components/payment-modal";
 
 interface UploadZoneProps {
   onImageUpload: (imageUrl: string) => void;
@@ -287,7 +288,15 @@ const UploadZone = ({ onImageUpload, setActiveEffects }: UploadZoneProps) => {
       )}
 
       {/* Payment Modal */}
-      
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
+        onUpgrade={() => {
+          setShowPaymentModal(false);
+        }}
+        usageCount={usageData?.usageCount || 0}
+        usageLimit={usageData?.usageLimit || 3}
+      />
     </motion.div>
   );
 };
