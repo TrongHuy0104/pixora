@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pixora - AI Image Editing Platform
 
-## Getting Started
+Pixora is a modern AI-powered web application that provides advanced image editing capabilities, secure user authentication, and a subscription-based model for premium features. It offers seamless cloud storage and an embedded, interactive canvas-based image editor interface.
 
-First, run the development server:
+## Demo
+
+Live demo: [https://pixora.vercel.app](https://pixora.vercel.app)
+
+## Screenshots
+
+![Homepage](./public/screenshot.png)
+
+## Features
+
+- **Advanced Image Editor**: A powerful, interactive canvas-based editor with premium effects.
+- **AI Processing**: Leverage advanced AI tools to enhance and modify your images.
+- **Tiered Subscriptions**: Free and Pro plans handled securely via Stripe checkout.
+  - **Free Plan**: Allows up to 3 generation/upload uses.
+  - **Pro Plan**: Grants unlimited uploads and priority processing.
+- **User Authentication**: Secure login and user management powered by NextAuth (Google OAuth).
+- **Cloud Storage**: Seamless image uploading and asset management powered by ImageKit.
+
+## Tech Stack
+
+**Frontend**
+- Next.js 14 (App Router)
+- React 19
+- TailwindCSS v4
+- Shadcn UI & Radix UI
+- Framer Motion
+
+**Backend**
+- Next.js API Routes
+- Prisma ORM
+- MongoDB
+
+**Services & Infra**
+- Stripe (Payments & Subscriptions)
+- ImageKit (Image Hosting & Processing)
+- NextAuth (Authentication)
+
+## Installation
+
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/pixora.git
+cd pixora
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Generate Prisma Client:
 
-## Learn More
+```bash
+pnpm exec prisma generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables
 
-## Deploy on Vercel
+Create a `.env` file in the root directory and add the following necessary keys:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+# Database
+DATABASE_URL="your_mongodb_connection_string"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your_nextauth_secret"
+
+# Google OAuth
+GOOGLE_CLIENT_ID="your_google_client_id"
+GOOGLE_CLIENT_SECRET="your_google_client_secret"
+
+# Stripe
+STRIPE_SECRET_KEY="your_stripe_secret_key"
+NEXT_PUBLIC_STRIPE_PUBLIC_KEY="your_stripe_public_key"
+STRIPE_WEBHOOK_SECRET="your_stripe_webhook_secret"
+
+# ImageKit
+NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY="your_imagekit_public_key"
+NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT="your_imagekit_url_endpoint"
+IMAGEKIT_PRIVATE_KEY="your_imagekit_private_key"
+```
+
+## Project Structure
+
+```text
+pixora/
+ ├── app/            # Next.js app router pages and API routes
+ ├── components/     # Reusable UI components (buttons, modals, navbar)
+ ├── modules/        # Major page sections (Hero, Features, Pricing, Editor)
+ ├── prisma/         # Prisma schema and database configuration
+ ├── public/         # Static assets and images
+ └── lib/            # Utility functions and configurations
+```
+
+## API Endpoints
+
+- `POST /api/create-checkout-session` - Initializes Stripe checkout for Pro upgrades
+- `POST /api/webhooks/stripe` - Handles Stripe webhook events for subscription updates
+- `GET /api/upload-auth` - Generates authentication parameters for ImageKit uploads
+
+## Deployment
+
+Deploy using Vercel:
+
+```bash
+vercel deploy
+```
+
+## Future Improvements
+
+- Add AI image generation (Text-to-Image)
+- Improve caching and image load times
+- Add community gallery to share edited images
+- Implement advanced team collaboration features
+
+## License
+
+MIT
